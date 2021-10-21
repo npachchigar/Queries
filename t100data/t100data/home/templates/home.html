@@ -27,8 +27,8 @@
             {% endcomment %}
             <li>What are the top 5 airports in terms of:
                 <ul>
-                    <li>Total freight by origin</li>
-                    <li>Total freight by destination</li>
+                    <li><a href="{% url 'top5freorigin' %}">Total freight by origin</a></li>
+                    <li><a href="{% url 'top5fredestination' %}">Total freight by destination</a></li>
                 </ul>
             </li>
             {% comment %} 
@@ -38,8 +38,8 @@
             {% endcomment %}
             <li>What are the top 5 airports in terms of:
                 <ul>
-                    <li>Total mail by origin</li>
-                    <li>Total mail by destination</li>
+                    <li><a href="{% url 'top5mailorigin' %}">Total mail by origin</a></li>
+                    <li><a href="{% url 'top5maildestination' %}">Total mail by destination</a></li>
                 </ul>
             </li>
             {% comment %} 
@@ -49,8 +49,8 @@
             {% endcomment %}
             <li>What are the top 5 airports in terms of:
                 <ul>
-                    <li>Total distance by origin</li>
-                    <li>Total distance by destination</li>
+                    <li><a href="{% url 'top5disorigin' %}">Total distance by origin</a></li>
+                    <li><a href="{% url 'top5disdestination' %}">Total distance by destination</a></li>
                 </ul>
             </li>    
             {% comment %} 
@@ -61,7 +61,7 @@
             * Which airline reported the most mail carried?
             * Which airline reported the longest flight distance?     
             {% endcomment %}
-            <li>Which airport reported the most passengers by month?</li>
+            <li><a href=" {% url 'toppassengers_month' %} ">Which airport reported the most passengers by month?</a></li>
             <li><a href=" {% url 'topdistance_month' %} ">Which airport reported the longest distance by month?</a></li>
             <li>Which airline reported the most freight carried?</li>
             <li>Which airline reported the most passengers carried?</li>
