@@ -10,7 +10,8 @@ from . views import MarketDataList, \
                     Top5AirportsMailByDestination, \
                     Top5AirportsDisByOrigin, \
                     Top5AirportsDisByDestination, \
-                    TopPassengersByMonth            
+                    TopPassengersByMonth, \
+                    TopFreightCarriedAirline                
 
 
 urlpatterns = [
@@ -64,6 +65,11 @@ urlpatterns = [
         TopPassengersByMonth.as_view(
             extra_context={'title': "Most Passengers by Month"}
         ), 
-        name="toppassengers_month"),               
+        name="toppassengers_month"),
+    path('topfreightcarriedairline/', 
+        TopFreightCarriedAirline.as_view(
+            extra_context={'title': "Most Freight Carried Airline"}
+        ),
+        name="topfreightcarriedairline"),                   
 
 ]

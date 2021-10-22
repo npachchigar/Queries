@@ -147,6 +147,17 @@ class TopPassengersByMonth(ListView):
         return month_list
 
 
+# Which airline reported the most freight carried?
+class TopFreightCarriedAirline(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('carrier_id','carrier_name') \
+                        .annotate(total_fre=Sum('freight')) \
+                        .order_by('-total_fre')[0:1]
+    print(queryset)                                   
+    template_name="most_freight_carried_airline.html"        
+
+
 
 
 
