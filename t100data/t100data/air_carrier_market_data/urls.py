@@ -11,7 +11,19 @@ from . views import MarketDataList, \
                     Top5AirportsDisByOrigin, \
                     Top5AirportsDisByDestination, \
                     TopPassengersByMonth, \
-                    TopFreightCarriedAirline                
+                    TopFreightCarriedAirline, \
+                    TopPassengersCarriedAirline, \
+                    TopMailCarriedAirline, \
+                    LongDistanceAirline, \
+                    AvgNumPassengersForLAX, \
+                    AvgNumPassengersForSFO, \
+                    AvgNumPassengersForDFW, \
+                    AvgNumPassengersForATL, \
+                    AvgNumPassengersForORD                     
+                   
+               
+
+                                      
 
 
 urlpatterns = [
@@ -70,6 +82,46 @@ urlpatterns = [
         TopFreightCarriedAirline.as_view(
             extra_context={'title': "Most Freight Carried Airline"}
         ),
-        name="topfreightcarriedairline"),                   
-
+        name="topfreightcarriedairline"),
+    path('toppassengerscarriedairline/', 
+        TopPassengersCarriedAirline.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="toppassengerscarriedairline"),
+    path('topmailcarriedairline/', 
+        TopMailCarriedAirline.as_view(
+            extra_context={'title': "Most mail Carried Airline"}
+        ),
+        name="topmailcarriedairline"),
+    path('longdistanceairline/', 
+        LongDistanceAirline.as_view(
+            extra_context={'title': "Long Distance Airline"}
+        ),
+        name="longdistanceairline"),    
+    path('avgpassengersforlax/', 
+        AvgNumPassengersForLAX.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="avgpassengersforlax"),
+    path('avgpassengersforsfo/', 
+        AvgNumPassengersForSFO.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="avgpassengersforsfo"), 
+    path('avgpassengersfordfw/', 
+        AvgNumPassengersForDFW.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="avgpassengersfordfw"),
+    path('avgpassengersforatl/', 
+        AvgNumPassengersForATL.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="avgpassengersforatl"), 
+    path('avgpassengersforord/', 
+        AvgNumPassengersForORD.as_view(
+            extra_context={'title': "Most Passengers Carried Airline"}
+        ),
+        name="avgpassengersforord"),               
+                                
 ]

@@ -1,5 +1,7 @@
 # Create your views here.
+from functools import update_wrapper
 import pdb
+from django.db.models.aggregates import Avg
 from django.views.generic import ListView
 from django.db.models import Max, Sum
 
@@ -153,9 +155,88 @@ class TopFreightCarriedAirline(ListView):
     queryset = MarketData.objects \
                         .values('carrier_id','carrier_name') \
                         .annotate(total_fre=Sum('freight')) \
-                        .order_by('-total_fre')[0:1]
-    print(queryset)                                   
-    template_name="most_freight_carried_airline.html"        
+                        .order_by('-total_fre')[0:1]                                     
+    template_name="most_freight_carried_airline.html"   
+
+
+# Which airline reported the most passengers carried?
+class TopPassengersCarriedAirline(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('carrier_id','carrier_name') \
+                        .annotate(total_pax=Sum('passengers')) \
+                        .order_by('-total_pax')[0:1]                   
+    template_name="most_passengers_carried_airline.html" 
+
+
+# Which airline reported the most mail carried?
+class TopMailCarriedAirline(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('carrier_id','carrier_name') \
+                        .annotate(total_mail=Sum('mail')) \
+                        .order_by('-total_mail')[0:1]                   
+    template_name="most_mail_carried_airline.html" 
+
+
+# Which airline reported the longest flight distance?
+class LongDistanceAirline(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('carrier_id','carrier_name') \
+                        .annotate(total_distance=Sum('distance')) \
+                        .order_by('-total_distance')[0:1]                   
+    template_name="long_distance_airline.html"                                     
+     
+# Find the average number of passengers for flights into:
+# LAX (Los Angeles)
+class AvgNumPassengersForLAX(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('dest_city_name', 'dest_iata_code') \
+                        .annotate(total_pax=Avg('passengers')) \
+                        .filter(dest_iata_code='LAX')                   
+    template_name="avg_passengers_for_lax.html" 
+
+# SFO (San Francisco)
+class AvgNumPassengersForSFO(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('dest_city_name', 'dest_iata_code') \
+                        .annotate(total_pax=Avg('passengers')) \
+                        .filter(dest_iata_code='SFO')                   
+    template_name="avg_passengers_for_sfo.html"
+
+# DFW (Dallas-Fort Worth)
+class AvgNumPassengersForDFW(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('dest_city_name', 'dest_iata_code') \
+                        .annotate(total_pax=Avg('passengers')) \
+                        .filter(dest_iata_code='DFW')                   
+    template_name="avg_passengers_for_dfw.html"
+
+# ATL (Atlanta)
+class AvgNumPassengersForATL(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('dest_city_name', 'dest_iata_code') \
+                        .annotate(total_pax=Avg('passengers')) \
+                        .filter(dest_iata_code='ATL')                   
+    template_name="avg_passengers_for_atl.html" 
+
+# ORD (Chicago)
+class AvgNumPassengersForORD(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('dest_city_name', 'dest_iata_code') \
+                        .annotate(total_pax=Avg('passengers')) \
+                        .filter(dest_iata_code='ORD')                   
+    template_name="avg_passengers_for_ord.html" 
+
+
+# Rank order passengers carried, by month, for these airlines
+# AA (American Airlines)                   
 
 
 

@@ -64,9 +64,9 @@
             <li><a href=" {% url 'toppassengers_month' %} ">Which airport reported the most passengers by month?</a></li>
             <li><a href=" {% url 'topdistance_month' %} ">Which airport reported the longest distance by month?</a></li>
             <li><a href=" {% url 'topfreightcarriedairline' %} ">Which airline reported the most freight carried?</a></li>
-            <li>Which airline reported the most passengers carried?</li>
-            <li>Which airline reported the most mail carried?</li>
-            <li>Which airline reported the longest flight distance?</li>
+            <li><a href=" {% url 'toppassengerscarriedairline' %} ">Which airline reported the most passengers carried?</a></li>
+            <li><a href=" {% url 'topmailcarriedairline' %} ">Which airline reported the most mail carried?</a></li>
+            <li><a href=" {% url 'longdistanceairline' %} ">Which airline reported the longest flight distance?</a></li>
 
             {% comment %} 
             * Rank order passengers carried, by month, for these airlines:
@@ -95,11 +95,11 @@
             {% endcomment %}
             <li>Find the average number of passengers for flights into:
                 <ul>
-                    <li>LAX (Los Angeles)</li>
-                    <li>SFO (San Francisco)</li>
-                    <li>DFW (Dallas-Fort Worth)</li>
-                    <li>ATL (Atlanta)</li>
-                    <li>ORD (Chicago)</li>
+                    <li><a href=" {% url 'avgpassengersforlax' %} ">LAX (Los Angeles)</a></li>
+                    <li><a href=" {% url 'avgpassengersforsfo' %} ">SFO (San Francisco)</a></li>
+                    <li><a href=" {% url 'avgpassengersfordfw' %} ">DFW (Dallas-Fort Worth)</a></li>
+                    <li><a href=" {% url 'avgpassengersforatl' %} ">ATL (Atlanta)</a></li>
+                    <li><a href=" {% url 'avgpassengersforord' %} ">ORD (Chicago)</a></li>
                 </ul>
             </li>
 
