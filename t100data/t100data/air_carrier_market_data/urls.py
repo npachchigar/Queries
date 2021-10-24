@@ -19,9 +19,20 @@ from . views import MarketDataList, \
                     AvgNumPassengersForSFO, \
                     AvgNumPassengersForDFW, \
                     AvgNumPassengersForATL, \
-                    AvgNumPassengersForORD                     
-                   
-               
+                    AvgNumPassengersForORD, \
+                    TopPassengersByMonthForAA, \
+                    AvgVolFreightForMIA, \
+                    AvgVolFreightForMEM, \
+                    AvgVolFreightForJFK, \
+                    AvgVolFreightForANC, \
+                    AvgVolFreightForSDF, \
+                    CityFreightForLongDistance, \
+                    CityMailForShortDistance, \
+                    TopPassengersByMonthForAS, \
+                    TopPassengersByMonthForDL, \
+                    TopPassengersByMonthForUA, \
+                    TopPassengersByMonthForWN                                                                      
+                    
 
                                       
 
@@ -100,28 +111,89 @@ urlpatterns = [
         name="longdistanceairline"),    
     path('avgpassengersforlax/', 
         AvgNumPassengersForLAX.as_view(
-            extra_context={'title': "Most Passengers Carried Airline"}
+            extra_context={'title': "Average Passengers Carried Airline"}
         ),
         name="avgpassengersforlax"),
     path('avgpassengersforsfo/', 
         AvgNumPassengersForSFO.as_view(
-            extra_context={'title': "Most Passengers Carried Airline"}
+            extra_context={'title': "Average Passengers Carried Airline"}
         ),
         name="avgpassengersforsfo"), 
     path('avgpassengersfordfw/', 
         AvgNumPassengersForDFW.as_view(
-            extra_context={'title': "Most Passengers Carried Airline"}
+            extra_context={'title': "Average Passengers Carried Airline"}
         ),
         name="avgpassengersfordfw"),
     path('avgpassengersforatl/', 
         AvgNumPassengersForATL.as_view(
-            extra_context={'title': "Most Passengers Carried Airline"}
+            extra_context={'title': "Average Passengers Carried Airline"}
         ),
         name="avgpassengersforatl"), 
     path('avgpassengersforord/', 
         AvgNumPassengersForORD.as_view(
-            extra_context={'title': "Most Passengers Carried Airline"}
+            extra_context={'title': "Average Passengers Carried Airline"}
         ),
-        name="avgpassengersforord"),               
+        name="avgpassengersforord"),
+    path('toppassengers_monthforaa/', 
+        TopPassengersByMonthForAA.as_view(
+            extra_context={'title': "Passengers Carried by Month For AA"}
+        ),
+        name="toppassengers_monthforaa"),
+    path('toppassengers_monthforas/', 
+        TopPassengersByMonthForAS.as_view(
+            extra_context={'title': "Passengers Carried by Month For AS"}
+        ),
+        name="toppassengers_monthforas"),
+    path('toppassengers_monthfordl/', 
+        TopPassengersByMonthForDL.as_view(
+            extra_context={'title': "Passengers Carried by Month For DL"}
+        ),
+        name="toppassengers_monthfordl"),
+    path('toppassengers_monthforua/', 
+        TopPassengersByMonthForUA.as_view(
+            extra_context={'title': "Passengers Carried by Month For UA"}
+        ),
+        name="toppassengers_monthforua"), 
+    path('toppassengers_monthforwn/', 
+        TopPassengersByMonthForWN.as_view(
+            extra_context={'title': "Passengers Carried by Month For WN"}
+        ),
+        name="toppassengers_monthforwn"),                
+    path('avgfreightformia/', 
+        AvgVolFreightForMIA.as_view(
+            extra_context={'title': "Average Freight For MIA"}
+        ),
+        name="avgfreightformia"),
+    path('avgfreightformem/', 
+        AvgVolFreightForMEM.as_view(
+            extra_context={'title': "Average Freight For MEM"}
+        ),
+        name="avgfreightformem"),  
+    path('avgfreightforjfk/', 
+        AvgVolFreightForJFK.as_view(
+            extra_context={'title': "Average Freight For JFK"}
+        ),
+        name="avgfreightforjfk"),
+    path('avgfreightforanc/', 
+        AvgVolFreightForANC.as_view(
+            extra_context={'title': "Average Freight For ANC"}
+        ),
+        name="avgfreightforanc"), 
+    path('avgfreightforsdf/', 
+        AvgVolFreightForSDF.as_view(
+            extra_context={'title': "Average Freight For SDF"}
+        ),
+        name="avgfreightforsdf"),
+    path('cityfreightlongdistance/', 
+        CityFreightForLongDistance.as_view(
+            extra_context={'title': "City Pairs Most Freight for long Distance"}
+        ),
+        name="cityfreightlongdistance"),
+    path('citymailshortdistance/', 
+        CityMailForShortDistance.as_view(
+            extra_context={'title': "City Pairs Most Mail for Short Distance"}
+        ),
+        name="citymailshortdistance"),        
+
                                 
 ]

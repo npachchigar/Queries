@@ -23,9 +23,10 @@
         {% endcomment %}
     <thead>
         <tr>
-            <th>Destionation City</th>
-            <th>Destination Airport</th>        
-            <th>Passengers</th>
+            <th>Origin City</th>
+            <th>Destination City</th>        
+            <th>Freight</th>
+            <th>Distance</th>
       </tr>
     </thead>
     <tbody>
@@ -34,11 +35,12 @@
     note: the humanize app was installed to create the thousands separator
     https://docs.djangoproject.com/en/3.1/ref/contrib/humanize/ 
     {% endcomment %}
-    {% for airline in airline_list %}
+    {% for city in city_list %}
         <tr>
-            <td>{{ airline.dest_city_name }}</td>
-            <td>{{ airline.dest_iata_code }}</td>
-            <td>{{ airline.total_pax | intcomma }}</td>
+            <td>{{ city.orig_city_name }}</td>
+            <td>{{ city.dest_city_name }}</td>
+            <td>{{ city.total_freight | intcomma }}</td>
+            <td>{{ city.total_distance | intcomma }}</td>
         </tr>
     {% endfor %}    
     </tbody>

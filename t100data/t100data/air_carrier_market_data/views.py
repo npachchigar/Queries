@@ -3,7 +3,7 @@ from functools import update_wrapper
 import pdb
 from django.db.models.aggregates import Avg
 from django.views.generic import ListView
-from django.db.models import Max, Sum
+from django.db.models import Max, Sum, Min
 
 from . models import MarketData
 
@@ -196,7 +196,7 @@ class AvgNumPassengersForLAX(ListView):
                         .values('dest_city_name', 'dest_iata_code') \
                         .annotate(total_pax=Avg('passengers')) \
                         .filter(dest_iata_code='LAX')                   
-    template_name="avg_passengers_for_lax.html" 
+    template_name="avg_passengers.html" 
 
 # SFO (San Francisco)
 class AvgNumPassengersForSFO(ListView):
@@ -205,7 +205,7 @@ class AvgNumPassengersForSFO(ListView):
                         .values('dest_city_name', 'dest_iata_code') \
                         .annotate(total_pax=Avg('passengers')) \
                         .filter(dest_iata_code='SFO')                   
-    template_name="avg_passengers_for_sfo.html"
+    template_name="avg_passengers.html"
 
 # DFW (Dallas-Fort Worth)
 class AvgNumPassengersForDFW(ListView):
@@ -214,7 +214,7 @@ class AvgNumPassengersForDFW(ListView):
                         .values('dest_city_name', 'dest_iata_code') \
                         .annotate(total_pax=Avg('passengers')) \
                         .filter(dest_iata_code='DFW')                   
-    template_name="avg_passengers_for_dfw.html"
+    template_name="avg_passengers.html"
 
 # ATL (Atlanta)
 class AvgNumPassengersForATL(ListView):
@@ -223,7 +223,7 @@ class AvgNumPassengersForATL(ListView):
                         .values('dest_city_name', 'dest_iata_code') \
                         .annotate(total_pax=Avg('passengers')) \
                         .filter(dest_iata_code='ATL')                   
-    template_name="avg_passengers_for_atl.html" 
+    template_name="avg_passengers.html" 
 
 # ORD (Chicago)
 class AvgNumPassengersForORD(ListView):
@@ -232,16 +232,221 @@ class AvgNumPassengersForORD(ListView):
                         .values('dest_city_name', 'dest_iata_code') \
                         .annotate(total_pax=Avg('passengers')) \
                         .filter(dest_iata_code='ORD')                   
-    template_name="avg_passengers_for_ord.html" 
+    template_name="avg_passengers.html" 
 
 
 # Rank order passengers carried, by month, for these airlines
 # AA (American Airlines)                   
+class TopPassengersByMonthForAA(ListView):
+    context_object_name = "airline_list"
+    template_name="rankorder_passengers_month_for_airline.html"
+
+    def get_queryset(self):
+
+        month_list = []
+
+        for month in range(1,7):
+            queryset = MarketData.objects \
+                .values('carrier_id',
+                        'carrier_name',
+                        'month') \
+                .filter(month__exact=month, carrier_id='AA') \
+                .annotate(total_pax=Sum('passengers')) \
+                .order_by('-total_pax')            
+                
+            # off by one error for assignment
+
+            month_list.append(queryset)
+        
+        def get_passengers(filtered_data_list_elem):
+            return filtered_data_list_elem[0].get('total_pax')
+
+        month_list.sort(key=get_passengers, reverse=True)
+        # return list
+        return month_list
+
+# AS (Alaska Airlines)
+class TopPassengersByMonthForAS(ListView):
+    context_object_name = "airline_list"
+    template_name="rankorder_passengers_month_for_airline.html"
+
+    def get_queryset(self):
+
+        month_list = []
+
+        for month in range(1,7):
+            queryset = MarketData.objects \
+                .values('carrier_id',
+                        'carrier_name',
+                        'month') \
+                .filter(month__exact=month, carrier_id='AS') \
+                .annotate(total_pax=Sum('passengers')) \
+                .order_by('-total_pax')            
+                
+            # off by one error for assignment
+
+            month_list.append(queryset)
+        
+        def get_passengers(filtered_data_list_elem):
+            return filtered_data_list_elem[0].get('total_pax')
+
+        month_list.sort(key=get_passengers, reverse=True)
+        # return list
+        return month_list
+
+# DL (Delta Airlines)
+class TopPassengersByMonthForDL(ListView):
+    context_object_name = "airline_list"
+    template_name="rankorder_passengers_month_for_airline.html"
+
+    def get_queryset(self):
+
+        month_list = []
+
+        for month in range(1,7):
+            queryset = MarketData.objects \
+                .values('carrier_id',
+                        'carrier_name',
+                        'month') \
+                .filter(month__exact=month, carrier_id='DL') \
+                .annotate(total_pax=Sum('passengers')) \
+                .order_by('-total_pax')            
+                
+            # off by one error for assignment
+
+            month_list.append(queryset)
+        
+        def get_passengers(filtered_data_list_elem):
+            return filtered_data_list_elem[0].get('total_pax')
+
+        month_list.sort(key=get_passengers, reverse=True)
+        # return list
+        return month_list
+
+# UA (United Airlines)
+class TopPassengersByMonthForUA(ListView):
+    context_object_name = "airline_list"
+    template_name="rankorder_passengers_month_for_airline.html"
+
+    def get_queryset(self):
+
+        month_list = []
+
+        for month in range(1,7):
+            queryset = MarketData.objects \
+                .values('carrier_id',
+                        'carrier_name',
+                        'month') \
+                .filter(month__exact=month, carrier_id='UA') \
+                .annotate(total_pax=Sum('passengers')) \
+                .order_by('-total_pax')            
+                
+            # off by one error for assignment
+
+            month_list.append(queryset)
+        
+        def get_passengers(filtered_data_list_elem):
+            return filtered_data_list_elem[0].get('total_pax')
+
+        month_list.sort(key=get_passengers, reverse=True)
+        # return list
+        return month_list
+
+# WN (Southwest Airlines)
+class TopPassengersByMonthForWN(ListView):
+    context_object_name = "airline_list"
+    template_name="rankorder_passengers_month_for_airline.html"
+
+    def get_queryset(self):
+
+        month_list = []
+
+        for month in range(1,7):
+            queryset = MarketData.objects \
+                .values('carrier_id',
+                        'carrier_name',
+                        'month') \
+                .filter(month__exact=month, carrier_id='WN') \
+                .annotate(total_pax=Sum('passengers')) \
+                .order_by('-total_pax')            
+                
+            # off by one error for assignment
+
+            month_list.append(queryset)
+        
+        def get_passengers(filtered_data_list_elem):
+            return filtered_data_list_elem[0].get('total_pax')
+
+        month_list.sort(key=get_passengers, reverse=True)
+        # return list
+        return month_list        
+
+# Find the average volume of freight for flights departing
+# MIA (Miami)
+class AvgVolFreightForMIA(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name', 'orig_iata_code') \
+                        .annotate(total_fre=Avg('freight')) \
+                        .filter(orig_iata_code='MIA')                   
+    template_name="avg_freight.html" 
+
+# MEM (Memphis)
+class AvgVolFreightForMEM(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name', 'orig_iata_code') \
+                        .annotate(total_fre=Avg('freight')) \
+                        .filter(orig_iata_code='MEM')                   
+    template_name="avg_freight.html"
+
+# JFK (New York JFK)
+class AvgVolFreightForJFK(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name', 'orig_iata_code') \
+                        .annotate(total_fre=Avg('freight')) \
+                        .filter(orig_iata_code='JFK')                   
+    template_name="avg_freight.html"
+
+# ANC (Anchorage)
+class AvgVolFreightForANC(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name', 'orig_iata_code') \
+                        .annotate(total_fre=Avg('freight')) \
+                        .filter(orig_iata_code='ANC')                   
+    template_name="avg_freight.html"        
 
 
+# SDF (Louisville)
+class AvgVolFreightForSDF(ListView):
+    context_object_name = "airline_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name', 'orig_iata_code') \
+                        .annotate(total_fre=Avg('freight')) \
+                        .filter(orig_iata_code='SDF')                   
+    template_name="avg_freight.html"
 
 
+# What city pairs represent the most freight carried for the longest distance?
+class CityFreightForLongDistance(ListView):
+    context_object_name = "city_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name','dest_city_name','freight') \
+                        .annotate(total_distance=Max('distance'), total_freight=Max('freight')) \
+                        .order_by('-total_distance')[0:1]                                          
+    template_name="city_freight_long_distance.html"
 
 
-
-
+# What city pairs represent the most mail carried for the shortest distance?    
+class CityMailForShortDistance(ListView):
+    context_object_name = "city_list"
+    queryset = MarketData.objects \
+                        .values('orig_city_name','dest_city_name','mail','distance') \
+                        .filter(distance=0) \
+                        .annotate(total_distance=Min('distance')) \
+                        .order_by('mail').reverse()[0]                    
+    template_name="city_mail_short_distance.html"                    
+                                      
+    

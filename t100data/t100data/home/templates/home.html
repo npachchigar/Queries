@@ -78,11 +78,11 @@
             {% endcomment %}
             <li> Rank order passengers carried, by month, for these airlines:
                 <ul>
-                    <li>AA (American Airlines)</li>
-                    <li>AS (Alaska Airlines)</li>
-                    <li>DL (Delta Airlines)</li>
-                    <li>UA (United Airlines)</li>
-                    <li>WN (Southwest Airlines)</li>
+                    <li><a href=" {% url 'toppassengers_monthforaa' %} ">AA (American Airlines)</a></li>
+                    <li><a href=" {% url 'toppassengers_monthforas' %} ">AS (Alaska Airlines)</a></li>
+                    <li><a href=" {% url 'toppassengers_monthfordl' %} ">DL (Delta Airlines)</a></li>
+                    <li><a href=" {% url 'toppassengers_monthforua' %} ">UA (United Airlines)</a></li>
+                    <li><a href=" {% url 'toppassengers_monthforwn' %} ">WN (Southwest Airlines)</a></li>
                 </ul>
             </li>
             {% comment %} 
@@ -113,19 +113,19 @@
             {% endcomment %}
             <li> Find the average volume of freight for flights departing:
                 <ul>
-                    <li>MIA (Miami)</li>
-                    <li>MEM (Memphis)</li>
-                    <li>JFK (New York JFK)</li>
-                    <li>ANC (Anchorage)</li>
-                    <li>SDF (Louisville)</li>
+                    <li><a href=" {% url 'avgfreightformia' %} ">MIA (Miami)</a></li>
+                    <li><a href=" {% url 'avgfreightformem' %} ">MEM (Memphis)</a></li>
+                    <li><a href=" {% url 'avgfreightforjfk' %} ">JFK (New York JFK)</a></li>
+                    <li><a href=" {% url 'avgfreightforanc' %} ">ANC (Anchorage)</a></li>
+                    <li><a href=" {% url 'avgfreightforsdf' %} ">SDF (Louisville)</a></li>
                 </ul>
             </li>
             {% comment %} 
             * What city pairs represent the most freight carried for the longest distance?
             * What city pairs represent the most mail carried for the shortest distance?
             {% endcomment %}
-            <li>What city pairs represent the most freight carried for the longest distance?</li>
-            <li>What city pairs represent the most mail carried for the shortest distance?</li>
+            <li><a href=" {% url 'cityfreightlongdistance' %} ">What city pairs represent the most freight carried for the longest distance?</a></li>
+            <li><a href=" {% url 'citymailshortdistance' %} ">What city pairs represent the most mail carried for the shortest distance?</a></li>
         </ul>
     </div>
 </body>

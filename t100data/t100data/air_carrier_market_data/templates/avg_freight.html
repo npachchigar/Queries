@@ -23,9 +23,9 @@
         {% endcomment %}
     <thead>
         <tr>
-            <th>Destionation City</th>
-            <th>Destination Airport</th>        
-            <th>Passengers</th>
+            <th>Origin City</th>
+            <th>Origin Airport</th>        
+            <th>Freight</th>
       </tr>
     </thead>
     <tbody>
@@ -36,9 +36,9 @@
     {% endcomment %}
     {% for airline in airline_list %}
         <tr>
-            <td>{{ airline.dest_city_name }}</td>
-            <td>{{ airline.dest_iata_code }}</td>
-            <td>{{ airline.total_pax | intcomma }}</td>
+            <td>{{ airline.orig_city_name }}</td>
+            <td>{{ airline.orig_iata_code }}</td>
+            <td>{{ airline.total_fre | intcomma }}</td>
         </tr>
     {% endfor %}    
     </tbody>
