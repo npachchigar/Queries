@@ -25,8 +25,8 @@
         <tr>
             <th>Origin City</th>
             <th>Destination City</th>        
-            <th>Mail</th>
             <th>Distance</th>
+            <th>Mail</th>
       </tr>
     </thead>
     <tbody>
@@ -39,8 +39,8 @@
         <tr>
             <td>{{ city.orig_city_name }}</td>
             <td>{{ city.dest_city_name }}</td>
-            <td>{{ city.mail | intcomma }}</td>
-            <td>{{ city.distance | intcomma }}</td>
+            <td>{{ city.total_distance | intcomma }}</td>
+            <td>{{ city.total_mail | intcomma }}</td>
         </tr>
     {% endfor %}    
     </tbody>

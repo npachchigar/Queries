@@ -443,10 +443,10 @@ class CityFreightForLongDistance(ListView):
 class CityMailForShortDistance(ListView):
     context_object_name = "city_list"
     queryset = MarketData.objects \
-                        .values('orig_city_name','dest_city_name','mail','distance') \
-                        .filter(distance=0) \
-                        .annotate(total_distance=Min('distance')) \
-                        .order_by('mail').reverse()[0]                    
+                        .values('orig_city_name','dest_city_name', 'mail') \
+                        .annotate(total_mail=Sum('mail'), total_distance=Min('distance')) \
+                        .order_by('-total_distance').reverse()[0:1]
+                      
     template_name="city_mail_short_distance.html"                    
                                       
     

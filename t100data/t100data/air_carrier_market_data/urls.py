@@ -194,6 +194,4 @@ urlpatterns = [
             extra_context={'title': "City Pairs Most Mail for Short Distance"}
         ),
         name="citymailshortdistance"),        
-
-                                
-]
+]                      
